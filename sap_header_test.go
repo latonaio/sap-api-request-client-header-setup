@@ -29,7 +29,7 @@ func (o option) RetryInterval() int {
 }
 
 func Test_a(t *testing.T) {
-	c := NewSAPPostClientWithOption(option{})
+	c := NewSAPRequestClientWithOption(option{})
 	res, err := c.Request(
 		"POST",
 		"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",

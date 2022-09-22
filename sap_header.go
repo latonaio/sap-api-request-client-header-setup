@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/latonaio/sap-api-request-client-header-setup/validation"
 	"golang.org/x/xerrors"
 )
 
@@ -62,9 +63,6 @@ func (c *SAPRequestClient) Request(method, url string, params map[string]string,
 		Jar: c.jar,
 	}
 	res, err := client.Do(req)
-	if err != nil {
-		return nil, xerrors.Errorf("request returns error: %w", err)
-	}
 	if res.StatusCode == http.StatusUnauthorized ||
 		res.StatusCode == http.StatusForbidden {
 		c.updateToken()
@@ -76,6 +74,7 @@ func (c *SAPRequestClient) Request(method, url string, params map[string]string,
 	if err != nil {
 		return nil, xerrors.Errorf("request returns error: %w", err)
 	}
+	res = validation.ImperfectJsonPatch(res)
 	return res, nil
 }
 
