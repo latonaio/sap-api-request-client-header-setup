@@ -36,9 +36,9 @@ func NewSAPRequestClientWithOption(o SAPRequestClientOption) *SAPRequestClient {
 	)
 }
 func NewSAPRequestClient(sapUserName, sapPass, refreshTokenURL string, retryMaxCnt, retryIntervalMilliSec int) *SAPRequestClient {
-	if refreshTokenURL == "" {
-		refreshTokenURL = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-	}
+	//	if refreshTokenURL == "" {
+	//		refreshTokenURL = "http://XXXXXXXXXXXXXXX/sap/opu/odata/sap/API_PRODUCT_SRV/"
+	//	}
 	j, _ := cookiejar.New(nil)
 	c := &SAPRequestClient{
 		jar:                   j,
